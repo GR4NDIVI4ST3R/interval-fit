@@ -1,0 +1,58 @@
+/* Ghetto-Bootstrap.css is a simple 'library' for making good-looking pages easier to code */
+/* Credit: Xavior Pautin */
+/* Version 1.0.0 */
+/* 18 April 2020 */
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+/** Alerts */
+.alert {
+    margin-bottom: 0.6em;
+    padding: 1em;
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7em;
+}
+.alert-danger {
+    background: #FF5C57;
+}
+.alert-success {
+    background: #43AC6A;
+}
+.alert-info {
+    background: #0DAAD3;
+}
+.alert-warning {
+    background: #E99002;
+}
+
+/** Buttons */
+.button {
+    padding: 0.5em;
+    display: block; /*? Necessary for horizontal button centering to work */
+    max-width: max-content; /*? Necessary for horizontal button centering to work */
+    min-width: min-content; /*? Necessary for horizontal button centering to work */
+    
+    background: #0DAAD3;
+    color: white;
+    font-size: 1em;
+    font-weight: normal;
+    text-align: center;
+    text-decoration: none; /*Gets rid of link underline*/
+}
+.button:hover {
+    cursor: pointer;
+}
+.button:active {
+    background: #079BD2;
+}
+.button::selection {
+    color: none;
+    background: none;
+}
+
+/** Headers */
+h3 {
+    text-align: center;
+    margin: 0 0 1em;
+}

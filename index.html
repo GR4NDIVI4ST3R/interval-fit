@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Routine Creation</title>
+        <link rel="stylesheet" href="./lib/ghetto-bootstrap.css">
+        <link rel="stylesheet" href="./css/index.css">
+        <link rel="stylesheet" href="./css/home-screen.css">
+        <link rel="stylesheet" href="./css/add-routine-screen.css">
+        <link rel="stylesheet" href="./css/timer-screen.css">
+    </head>
+<body>
+    <!-- The following screen structure is based on the Single Page Application tutorial by Steve Griffith: https://youtu.be/wlVmmsMD28w -->
+
+    <div class="screen active" id="home-screen"> <!-- Change ID to "home-screen" -->
+        <div class="home-screen">
+            <h2>INTERVAL FIT</h2>
+            <div class="button nav-btn" target="add-routine-screen">Add Routine</div>
+        </div>
+    </div>
+
+    <div class="screen" id="add-routine-screen"> <!-- Change ID to "home-screen" -->
+        <div class="add-routine-screen">
+            <header>
+                <a href="#" class="nav-btn" target="timer-screen"><img src="./imgs/back-btn-dark.svg" alt="back"></a>
+                <h5 class="screen-title">ADD ROUTINE</h5>
+            </header>
+            <div class="body">
+                <h3>NAME YOUR ROUTINE</h3>
+                <h5>MY MOURNING ROUTINE</h5>
+                <input type="text" name="Title" id="routine-name-input" placeholder="Routine Name">
+                <div class="button" id="submit-routine-btn">Submit</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="screen" id="timer-screen">
+        <div class="timer-screen">
+            <nav>
+                <a href="#" class="nav-btn" target="add-routine-screen"><img src="./imgs/back-btn-white.svg" alt="back"></a>
+            </nav>
+            <div class="time-label" id="timeLabel">0</div>
+            <canvas></canvas>
+        </div>
+        <!--*I use a two divs for .screen and .timer-screen b/c they will have different display attributes-->
+        <!--.screen will have a generic "show" attribute: [display: block]-->
+        <!--.timer-screen will have a different display attribute than .screen: [display: flex]-->
+    </div>
+
+</body>
+
+<script src="./lib/general-library.js"></script>
+<script src="./lib/ghetto-bootstrap.js"></script>
+
+<script src="./js/app.js"></script>
+<script src="./js/add-routine-screen.js"></script>
+<script src="./js/add-timer-screen.js"></script>
+<script src="./js/timer-screen.js"></script>
+
+</html>
