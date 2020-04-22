@@ -53,7 +53,7 @@ function createTimerCard (_name, _duration, _type) {
     
     newTimerCard.removeAttribute("id");
     timerNameLabel.innerHTML = _name;
-    timerDurationLabel.innerHTML = _duration;
+    timerDurationLabel.innerHTML = formatMilliseconds(_duration);
     timerTypeLabel.innerHTML = _type;
     deleteTimerHyperlink.innerHTML = 'Delete'
     
@@ -86,7 +86,7 @@ function finishRoutine() {
         RoutineList.push(currentRoutine);
         
         // Reset current routine now that it has been saved
-        currentRoutine = '';
+        currentRoutine = new Routine('__EMPTY__');
 
         //! Empty any leftover input fields
         timerNameInput.value = '';
@@ -103,6 +103,3 @@ function finishRoutine() {
         console.log('TimerList: %o', currentRoutine.timers);
     }
 }
-
-submitTimerBtn.addEventListener('click', () => addTimer());
-finishRoutineBtn.addEventListener('click', () => finishRoutine());

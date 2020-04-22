@@ -21,8 +21,8 @@ var canvas;
 var context;
 
 // VARIABLES/OBJECTS
-var currentRoutine;
-var currentTimer;
+var currentRoutine = new Routine('__EMPTY__');
+var currentTimer = {};
 
 const RoutineList = [/* Routine Objects */];
 function Routine(_name) {
@@ -58,6 +58,10 @@ const App = {
         document.querySelectorAll('.nav-hyperlink').forEach((link)=>{
             link.addEventListener('click', App.nav);
         });
+
+        submitRoutineBtn.addEventListener('click', () => addRoutine());
+        submitTimerBtn.addEventListener('click', () => addTimer());
+        finishRoutineBtn.addEventListener('click', () => finishRoutine());
 
         App.loadScript(document.querySelector('.active').id);
     },
@@ -98,9 +102,8 @@ const App = {
 
               break;
           case 'add-routine-screen':
-              if (typeof(currentRoutine) !== 'undefined') {
+              if (currentRoutine.name !== '__EMPTY__') {
                   currentRoutine.timers.forEach( timer => createTimerCard(timer.name, timer.duration, timer.type) );
-
               }
               console.log('Screen Loaded: add-routine-screen');
               break;
