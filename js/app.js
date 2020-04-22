@@ -21,6 +21,7 @@ var canvas;
 var context;
 
 // VARIABLES/OBJECTS
+var lastScreen = 'home-screen';
 var currentRoutine = new Routine('__EMPTY__');
 var currentTimer = {};
 
@@ -80,8 +81,8 @@ const App = {
 
         // Then load the target screen
         document.getElementById(targetScreen).classList.add('active');
-        console.log(`TargetScreen: ${targetScreen}`);
         App.loadScript(targetScreen);
+        lastScreen = targetScreen;
         
         // history.pushState({}, targetScreen, `#${targetScreen}`);
         // document.getElementById(targetScreen).dispatchEvent(app.show);
@@ -90,32 +91,39 @@ const App = {
         document.querySelector('.active').classList.remove('active');
         
         //! Clear event listeners, call functions that stop screen functionality, reset variables, etc.
-        
-        removeTimerCards();
-        //! removeRoutineCards();
+        clearTimerCards();
+        //! clearRoutineCards();
 
         endTimer(); // Unload timer-screen
     },
     loadScript: function (_screen) {
         switch (_screen) {
-          case 'home-screen':
+            case 'home-screen':
+                break;
 
-              break;
-          case 'add-routine-screen':
-              if (currentRoutine.name !== '__EMPTY__') {
-                  currentRoutine.timers.forEach( timer => createTimerCard(timer.name, timer.duration, timer.type) );
-              }
-              console.log('Screen Loaded: add-routine-screen');
-              break;
-          case 'add-timer-screen':
-              console.log('Screen Loaded: add-timer-screen');
-              break;
-          case 'timer-screen':
-              App.loadCanvas();
-              loadTimerScreen();
-              console.log('Screen Loaded: timer-screen');
-              break;
-            //! Update to include other screens
+            case 'add-routine-screen':
+                // Detect if there are no timers, then show the no-timers-alert accordingly
+                if (currentRoutine.timers.length < 1) {
+                    document.getElementById('no-timers-alert').classList.remove('hidden');
+                } else {
+                    currentRoutine.timers.forEach( timer => createTimerCard(timer.name, timer.duration, timer.type) );
+                    document.getElementById('no-timers-alert').classList.add('hidden');
+                }
+                if (_screen != lastScreen) {
+                    document.location.hash = '';
+                    document.location.hash ='finish-routine-btn';
+                }
+
+                break;
+
+            case 'add-timer-screen':
+                break;
+
+            case 'timer-screen':
+                App.loadCanvas();
+                loadTimerScreen();
+                break;
+                //! Update to include other screens
         }
     },
     

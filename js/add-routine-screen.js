@@ -40,14 +40,14 @@ function addRoutine() {
     else {
         // Assign a default name if necessary
         if (isEmpty(input)) {
-            name = `Routine ${RoutineList.length + 1}`;
+            name = `ROUTINE ${RoutineList.length + 1}`;
         }
         // Create Routine but don't push it to the list until it's finished
         currentRoutine = new Routine(name);
         
         // Show the list of timers belonging to the newly created routine
         document.getElementById('add-routine-container').classList.add('hidden');
-        document.getElementById('timer-list-container').classList.remove('hidden');
+        document.getElementById('timer-display-container').classList.remove('hidden');
         document.querySelector('#routine-label').innerHTML = name;
         
         // Make the input box empty

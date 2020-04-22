@@ -36,10 +36,28 @@
 /** General*/
 .container {
     margin-top: 3px;
-    padding: 1.2em 2em;
+    padding: 1em 2em;
 }
-.container > :first-child {
+.container > * {
     margin-bottom: 0.6em;
+}
+h1 {
+    margin: 0;
+}
+h2 {
+    margin: 0;
+}
+h3 {
+    margin: 0;
+}
+h4 {
+    margin: 0;
+}
+h5 {
+    margin: 0;
+}
+h6 {
+    margin: 0;
 }
 
 /** Alerts */

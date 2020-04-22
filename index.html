@@ -35,24 +35,25 @@
                 <div class="button" id="submit-routine-btn">Submit</div>
             </div>
             
-            <div class="container hidden" id="timer-list-container">
-                <div>
+            <div class="container hidden" id="timer-display-container">
+                <div id="timer-display-header">
                     <p class="name-label">Name</p>
                     <h3 id="routine-label"></h3>
+                    <p class="timers-label">Timers</p>
+                </div>
+                <h3 id="no-timers-alert">NO TIMERS</h3>
+                <div class="timer-card hidden" id="timer-card-template">
+                    <!-- This .timer-card is a template that will always remain empty -->
+                    <h4 class="timer-name-label"></h4>
+                    <span class="timer-duration-label"></span>
+                    <span class="timer-type-label"></span>
+
+                    <a class="delete-timer-btn"></a>
                 </div>
 
-                <div id="timer-cards-container">
-                    <div class="timer-card" id="timer-card-template">
-                        <!-- This .timer-card is a template that will always remain empty -->
-                        <h4 class="timer-name-label"></h4>
-                        <span class="timer-duration-label"></span>
-                        <span class="timer-type-label"></span>
-
-                        <a class="delete-timer-hyperlink"></a>
-                    </div>
-                </div>
+                <div id="timer-cards-container"></div>
                 
-                <a class="nav-hyperlink" target="add-timer-screen">Add Timer</a>
+                <a class="button nav-btn" id="add-timer-btn" target="add-timer-screen">Add Timer</a>
                 <div class="button" id="finish-routine-btn">Finish Routine</div>
             </div>
 

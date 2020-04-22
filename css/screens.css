@@ -29,16 +29,45 @@
     font-size: 1.3em;
 }
 
-#timer-list-container > div:first-of-type {
-    border-bottom: 1px solid var(--grey3);
+/** TIMER LIST CONTAINER */
+#timer-display-header {
+    margin-bottom: 5px;
 }
 #routine-label {
-    margin: 0 0 2px;
+    margin: 0 0 0.8em;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--grey3);
 }
+.timers-label {
+    color: var(--blue);
+    font-weight: medium;
+    font-size: 1.1em;
+    margin: 0;
+}
+#no-timers-alert {
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--grey3);
+}
+#timer-cards-container {
+    margin-bottom: 0.6em;
+    padding-bottom: 0;
+}    
 
 .timer-card {
-    margin-bottom: 0.6em;
-    background: var(--blue);
+    margin-bottom: 0.8em;
+    padding: 0.8em;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.delete-timer-btn {
+    color: var(--muted-red);
+}
+#add-timer-btn {
+    margin-bottom: 1em;
+}
+#finish-routine-btn {
+    background: var(--muted-red);
+    padding: 0.4em 0.5em;
 }
 
 /** ADD TIMER SCREEN*/
