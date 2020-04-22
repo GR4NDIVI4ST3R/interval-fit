@@ -3,11 +3,20 @@
 // TODO: When app switches to the timer screen, count 'timeLabel' up from zero and reverse sand animation as if it were filling up
 // TODO: Make a Settings icon that links to ./settings-screen
 // TODO: Sand Animation!
+// TODO: If currentRoutine isn't reset, then allow user to go back to where they left off
+// TODO: Make Montserrat offline by linking it as an included css file
 
 //* GLOBALS
 // HTML ELEMENTS
 const routineNameInput = document.getElementById('routine-name-input');
 const submitRoutineBtn = document.getElementById('submit-routine-btn');
+const finishRoutineBtn = document.getElementById('finish-routine-btn');
+
+const timerNameInput = document.getElementById('timer-name-input');
+const submitTimerBtn = document.getElementById('submit-timer-btn');
+
+const timerCardsContainer = document.getElementById('timer-cards-container');
+
 var canvas;
 var context;
 
@@ -22,16 +31,16 @@ function Routine(_name) {
 }
 
 // Routine.timers is where the Timer objects are stored
-function Timer() {
-    this.duration; // User inputs this
-    this.name; // Exercise name to put on screen
-    this.type; // Exercise Timer | Stretch Timer | Rest Timer
+function Timer(_name, _duration, _type) {
+    this.name = _name; // Exercise name to put on screen
+    this.duration = _duration;
+    this.type = _type; // Exercise Timer | Stretch Timer | Rest Timer
 }
 
 // FUNCTIONS
-function nameUsed(_list, _name) {
+function nameUsed(_array, _name) {
     let result;
-    _list.forEach( element => {if (element.name == _name) result = true} );
+    _array.forEach( element => {if (element.name == _name) result = true} );
     return result;
 }
 
@@ -45,6 +54,9 @@ const App = {
         // For each screen navigation button, add an event listener that calls the nav function
         document.querySelectorAll('.nav-btn').forEach((btn)=>{
             btn.addEventListener('click', App.nav);
+        });
+        document.querySelectorAll('.nav-hyperlink').forEach((link)=>{
+            link.addEventListener('click', App.nav);
         });
 
         App.loadScript(document.querySelector('.active').id);
@@ -64,9 +76,9 @@ const App = {
 
         // Then load the target screen
         document.getElementById(targetScreen).classList.add('active');
+        console.log(`TargetScreen: ${targetScreen}`);
         App.loadScript(targetScreen);
         
-        console.log(targetScreen);
         // history.pushState({}, targetScreen, `#${targetScreen}`);
         // document.getElementById(targetScreen).dispatchEvent(app.show);
     },
@@ -74,6 +86,10 @@ const App = {
         document.querySelector('.active').classList.remove('active');
         
         //! Clear event listeners, call functions that stop screen functionality, reset variables, etc.
+        
+        removeTimerCards();
+        //! removeRoutineCards();
+
         endTimer(); // Unload timer-screen
     },
     loadScript: function (_screen) {
@@ -82,19 +98,26 @@ const App = {
 
               break;
           case 'add-routine-screen':
+              if (typeof(currentRoutine) !== 'undefined') {
+                  currentRoutine.timers.forEach( timer => createTimerCard(timer.name, timer.duration, timer.type) );
 
+              }
+              console.log('Screen Loaded: add-routine-screen');
+              break;
+          case 'add-timer-screen':
+              console.log('Screen Loaded: add-timer-screen');
               break;
           case 'timer-screen':
               App.loadCanvas();
               loadTimerScreen();
-              console.log('timer-screen loaded')
+              console.log('Screen Loaded: timer-screen');
               break;
+            //! Update to include other screens
         }
     },
     
     loadCanvas: function (_canvasId) {
         let screen = document.querySelector('.active');
-        console.log(screen);
         canvas = (typeof(_canvasId) === 'string') ? document.getElementById(_canvasId) : document.querySelector('canvas');
         canvas.width = screen.offsetWidth;
         canvas.height = screen.offsetHeight;

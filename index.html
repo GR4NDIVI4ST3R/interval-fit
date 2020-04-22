@@ -4,33 +4,71 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Routine Creation</title>
+
         <link rel="stylesheet" href="./lib/ghetto-bootstrap.css">
         <link rel="stylesheet" href="./css/index.css">
-        <link rel="stylesheet" href="./css/home-screen.css">
-        <link rel="stylesheet" href="./css/add-routine-screen.css">
-        <link rel="stylesheet" href="./css/timer-screen.css">
+        <link rel="stylesheet" href="./css/screens.css">
     </head>
 <body>
     <!-- The following screen structure is based on the Single Page Application tutorial by Steve Griffith: https://youtu.be/wlVmmsMD28w -->
 
-    <div class="screen active" id="home-screen"> <!-- Change ID to "home-screen" -->
+    <div class="screen active" id="home-screen"> <!--! Change ID -->
         <div class="home-screen">
-            <h2>INTERVAL FIT</h2>
+            <h1>INTERVAL FIT</h1>
             <div class="button nav-btn" target="add-routine-screen">Add Routine</div>
         </div>
     </div>
 
-    <div class="screen" id="add-routine-screen"> <!-- Change ID to "home-screen" -->
+    <div class="screen" id="add-routine-screen">
         <div class="add-routine-screen">
+
             <header>
                 <a href="#" class="nav-btn" target="timer-screen"><img src="./imgs/back-btn-dark.svg" alt="back"></a>
-                <h5 class="screen-title">ADD ROUTINE</h5>
+                <div class="screen-label">ADD ROUTINE</div>
             </header>
-            <div class="body">
-                <h3>NAME YOUR ROUTINE</h3>
-                <h5>MY MOURNING ROUTINE</h5>
-                <input type="text" name="Title" id="routine-name-input" placeholder="Routine Name">
+
+            <div class="container" id="add-routine-container">
+                <h1>NAME YOUR ROUTINE</h1>
+
+                <input type="text" id="routine-name-input" placeholder="Routine Name" autocomplete="off">
+
                 <div class="button" id="submit-routine-btn">Submit</div>
+            </div>
+            
+            <div class="container hidden" id="timer-list-container">
+                <div>
+                    <p class="name-label">Name</p>
+                    <h3 id="routine-label"></h3>
+                </div>
+
+                <div id="timer-cards-container">
+                    <div class="timer-card" id="timer-card-template">
+                        <!-- This .timer-card is a template that will always remain empty -->
+                        <h4 class="timer-name-label"></h4>
+                        <span class="timer-duration-label"></span>
+                        <span class="timer-type-label"></span>
+
+                        <a class="delete-timer-hyperlink"></a>
+                    </div>
+                </div>
+                
+                <a class="nav-hyperlink" target="add-timer-screen">Add Timer</a>
+                <div class="button" id="finish-routine-btn">Finish Routine</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="screen" id="add-timer-screen">
+        <div class="add-timer-screen">
+            <header>
+                <a href="#" class="nav-btn" target="add-routine-screen"><img src="./imgs/back-btn-dark.svg" alt="back"></a>
+                <h3 class="screen-label">ADD TIMER</h3>
+            </header>
+
+            <div class="container">
+                <input type="text" name="name" id="timer-name-input" placeholder="Timer Name" autocomplete="off" required>
+                <div class="button" id="submit-timer-btn">Submit</div>
             </div>
         </div>
     </div>

@@ -20,6 +20,7 @@ function hasValidCharacters(_input) {
 function addRoutine() {
     const input = routineNameInput.value;
     let name = input.toUpperCase();;
+
     // Failure
     if (hasValidCharacters(input) === false) {
         showAlert('Please use the following: a-z, A-Z, 0-9, –, /, &, +, #, @, $, ?, or !', 'danger', routineNameInput);
@@ -39,18 +40,20 @@ function addRoutine() {
     else {
         // Assign a default name if necessary
         if (isEmpty(input)) {
-            name = `Routine${RoutineList.length + 1}`;
+            name = `Routine ${RoutineList.length + 1}`;
         }
-        // Add Routine
-        RoutineList.push( new Routine(name) );
+        // Create Routine but don't push it to the list until it's finished
+        currentRoutine = new Routine(name);
         
-        // Show Allert Banner
-        showAlert(`Success! ${name} was created.`, 'success', routineNameInput);
-        removeAlert(5000);
-
-        //TODO: Switch to add-timer-screen
+        // Show the list of timers belonging to the newly created routine
+        document.getElementById('add-routine-container').classList.add('hidden');
+        document.getElementById('timer-list-container').classList.remove('hidden');
+        document.querySelector('#routine-label').innerHTML = name;
+        
+        // Make the input box empty
+        routineNameInput.value = '';
     }
     console.log(RoutineList);
 }
 
-submitRoutineBtn.addEventListener('click', (e) => {addRoutine()});
+submitRoutineBtn.addEventListener('click', () => {addRoutine()});

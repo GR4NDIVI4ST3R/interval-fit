@@ -94,14 +94,4 @@ function loadTimerScreen() {
 
     // When Screen Tapped or Clicked, toggle timer countdown
     canvas.addEventListener('click', toggleTimer);
-    
-    // Screen Resize
-    // window.addEventListener('resize', function() {
-    //     canvas.width = canvas.parentNode.offsetWidth;
-    //     canvas.height = canvas.parentNode.offsetHeight;
-        
-    //     pauseTimer();
-    //     Seconds = (hasEnded === false) ? new SecondsAnimation() : context.clearRect(0, 0, canvas.width, canvas.height);
-    //     time = Math.ceil(time / 1000) * 1000; // Round up to nearest whole second
-    // });
 }

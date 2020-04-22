@@ -3,7 +3,7 @@ body {
     padding: 0;
     
     font-family: 'Montserrat', sans-serif;
-    color: #172B4D;
+    color: var(--bluish-black);
 }
 
 .screen {
@@ -29,14 +29,37 @@ canvas {
     grid-area: center;
 }
 
-@media only screen and (min-width: 700px) {
-    /*Phone-screen "emulator" for non-mobile devices*/
-    .screen {
-        border: 2px solid #000000;
-        margin: 25px 25px;
-        max-width: 47.5vh;
-        width: 190px;/* calc((100vh - 50px)*(0.48)) */
-        max-height: 100vh;
-        height: 386.5px; /* calc(100vh - 4px - 50px) Subtract border outline and margin*/
-    }
+/** Headers*/
+h4 {
+    margin: 0;
+}
+
+/** Nav Header */
+header {
+    display: flex;
+    box-shadow: 0 4px 4px var(--grey1);
+}
+header .nav-btn {
+    justify-self: flex-start;
+    margin: 15px;
+}
+header .nav-btn img {
+    display: block;
+}
+.screen-label {
+    justify-self: center;
+    margin: auto 5px;
+    font-style: normal;
+    font-weight: 800; /*Extra-Bold*/
+    font-size: 1.1em;
+}
+.name-label {
+    margin: 0 0 2px;
+    color: var(--blue);
+    font-weight: medium;
+    font-size: 1.1em;
+}
+
+.nav-hyperlink {
+    margin-bottom: 2em;
 }
