@@ -38,10 +38,13 @@
             <div class="container hidden" id="timer-display-container">
                 <div id="timer-display-header">
                     <p class="name-label">Name</p>
-                    <h3 id="routine-label"></h3>
+                    <div id="routine-label"></div>
                     <p class="timers-label">Timers</p>
                 </div>
-                <h3 id="no-timers-alert">NO TIMERS</h3>
+                <div id="no-timers-alert">NONE</div>
+                
+                <div id="timer-cards-container"></div>
+                
                 <div class="timer-card hidden" id="timer-card-template">
                     <!-- This .timer-card is a template that will always remain empty -->
                     <h4 class="timer-name-label"></h4>
@@ -50,8 +53,6 @@
 
                     <a class="delete-timer-btn"></a>
                 </div>
-
-                <div id="timer-cards-container"></div>
                 
                 <a class="button nav-btn" id="add-timer-btn" target="add-timer-screen">Add Timer</a>
                 <div class="button" id="finish-routine-btn">Finish Routine</div>

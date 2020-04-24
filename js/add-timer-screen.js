@@ -83,12 +83,16 @@ function finishRoutine() {
     //! switch screens
     //! If currentRoutine isn't reset, then allow user to go back to where they left off
     if (currentRoutine.timers.length < 1) {
-        showAlert('Please add a timer.', 'danger', document.getElementById('timer-display-header'));
+        showAlert('Please add a timer.', 'danger', addTimerBtn);
         removeAlert(1250);
     }
     else if (currentRoutine.timers.length >= 50) {
-        showAlert('There cannot be more than 50 timers in one routine.', 'danger', document.getElementById('timer-display-header'));
+        showAlert('There cannot be more than 50 timers in one routine.', 'danger', addTimerBtn);
         removeAlert(6000);
+
+        // Move to bottom of screen so user can see the submit-routine-btn, as well as, the alert
+        document.location.hash = '';
+        document.location.hash ='finish-routine-btn';
     }
     else {
         // Finish the process by submitting the routine to the RoutineList

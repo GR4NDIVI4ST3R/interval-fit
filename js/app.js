@@ -13,6 +13,7 @@ const submitRoutineBtn = document.getElementById('submit-routine-btn');
 const finishRoutineBtn = document.getElementById('finish-routine-btn');
 
 const timerNameInput = document.getElementById('timer-name-input');
+const addTimerBtn = document.getElementById('add-timer-btn');
 const submitTimerBtn = document.getElementById('submit-timer-btn');
 
 const timerCardsContainer = document.getElementById('timer-cards-container');
