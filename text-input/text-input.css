@@ -14,7 +14,7 @@
     --blue: #2E90FF;
     --grey6: #767676;
     --font-size: 1.1em;
-    --font-size-active: 1.1em;
+    --font-size-on-focus: 1.1em;
     --text-padding: 4px;
     --animation-duration: 0.25s;
 }
@@ -31,7 +31,7 @@
     font-size: var(--font-size);
     color: var(--bluish-black);
 }
-.input-container input {
+.input-container .text-input {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -86,7 +86,7 @@
     /* Raise and resize the label when the input is clicked into [:focus] OR when there is text left in the input [:not(:placeholder-shown)] */
     transform: translateY(-100%); /* Moves the label up the same height as the label's font */
     padding-bottom: calc(2px);
-    font-size: var(--font-size-active);
+    font-size: var(--font-size-on-focus);
     color: var(--blue);
 }
 
