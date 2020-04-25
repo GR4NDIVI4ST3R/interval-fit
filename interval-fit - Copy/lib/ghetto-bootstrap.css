@@ -1,0 +1,135 @@
+/* Ghetto-Bootstrap.css is a simple 'library' for making good-looking pages easier to code */
+/* Credit: Xavior Pautin */
+/* Version 1.0.0 */
+/* 18 April 2020 */
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800');
+
+:root {
+    /* Alerts */
+    --alert-success: #43AC6A;
+    --alert-danger: #F04124;
+    --alert-info: #0DAAD3;
+    --alert-warning: #E99002;
+
+    /* Type */
+    --bluish-black: #172B4D;
+    --blue: #2E90FF;
+
+    /* Reds */
+    --muted-red: #FF5C57;
+    --flame: #F2552C;
+    
+    /* Blues */
+    --ice: #A0FFFF;
+    --sky: #52F0FF;
+    --aqua: #2FCCF5;
+    --teal: #0DAAD3;
+
+    /* Greys */
+    --grey6: #767676;
+    --grey3: #D6D6D6;
+    --grey2: #E0E0E0;
+    --grey1: #F0F0F0;
+    --grey0: #F9F9F9;
+}
+
+/** General*/
+.container {
+    margin-top: 3px;
+    padding: 1em 2em;
+}
+.container > * {
+    margin-bottom: 0.6em;
+}
+h1 {
+    margin: 0;
+}
+h2 {
+    margin: 0;
+}
+h3 {
+    margin: 0;
+}
+h4 {
+    margin: 0;
+}
+h5 {
+    margin: 0;
+}
+h6 {
+    margin: 0;
+}
+
+/** Alerts */
+.alert {
+    margin-bottom: 0.6em;
+    padding: 1em;
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7em;
+}
+.alert-danger {
+    background: var(--alert-danger);
+}
+.alert-success {
+    background: var(--alert-success);
+}
+.alert-info {
+    background: var(--alert-info);
+}
+.alert-warning {
+    background: var(--alert-warning);
+}
+
+/** Buttons */
+.button {
+    display: block; /*? Necessary for horizontal button centering to work */
+    max-width: max-content; /*? Necessary for horizontal button centering to work */
+    min-width: min-content; /*? Necessary for horizontal button centering to work */
+    margin: 0 auto;
+    padding: 0.5em 0.6em;
+    border-radius: 5px;
+    
+    background: var(--blue);
+    color: white;
+    font-size: 1.4em;
+    font-weight: normal;
+    text-align: center;
+    text-decoration: none; /*Gets rid of link underline*/
+}
+.button:hover {
+    cursor: pointer;
+}
+.button:active {
+    background: #079BD2;
+}
+.button::selection {
+    color: none;
+    background: none;
+}
+
+.nav-hyperlink {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+/** Type Elements*/
+
+
+/** Forms */
+/* General */
+input[type=text], input[type=password] {
+    box-sizing: border-box; /*? Prevents the input box from exceeding the size of its parent container */
+    width: 100%;
+    height: 100%;
+
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--bluish-black);
+
+    color: var(--bluish-black);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400; /*Regular*/
+    font-size: 1em;
+}
