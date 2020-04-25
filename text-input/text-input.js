@@ -6,6 +6,7 @@ textInputTemplate.innerHTML =
     <input class="text-input" type="text" placeholder=" " autocomplete="off" required>
     <div class="animated-underline"></div>
     <div class="animated-label">Name</div>
+
     <style>
     @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800');
     
@@ -104,7 +105,7 @@ class textInput extends HTMLElement {
     constructor () {
         super();
         function elementHas(_attribute) {
-            if (typeof(_attribute) !== "undefined" && _attribute !== null ) return true;
+            if ( typeof(_attribute) !== "undefined" && _attribute !== null && _attribute != "" ) return true;
             else return false;
         }
         function isFocused () {
@@ -118,11 +119,11 @@ class textInput extends HTMLElement {
         const root = document.documentElement;
         const animatedLabel = this.shadowRoot.querySelector('.animated-label');
         const input = this.shadowRoot.querySelector('.text-input');
+        const height = this.shadowRoot.querySelector('.animated-label').offsetHeight;//! Make it change padding: top of input
         this.type = this.getAttribute('type');
         this.value = this.getAttribute('value');
         this.label = this.getAttribute('label');
         this.placeholder = this.getAttribute('placeholder');
-        this.height = this.shadowRoot.querySelector('.animated-label').offsetHeight;//! Make it change padding: top of input
         //! --font-size: 1.1em;
         //! --font-size-on-focus: 1.1em;
         //! --text-padding: 4px;
@@ -133,14 +134,14 @@ class textInput extends HTMLElement {
         if ( elementHas(this.type) ) this.shadowRoot.querySelector('.text-input').type = this.type;
         if ( elementHas(this.value) ) this.shadowRoot.querySelector('.text-input').value = this.value;
         if ( elementHas(this.placeholder) ) {
-            animatedLabel.textContent = ''.
+            animatedLabel.textContent = "";
             input.placeholder = this.placeholder;
         } else {
             animatedLabel.textContent = ( elementHas(this.label) ) ? this.label : 'Name';
         }
 
         //! Logging
-        console.log(`value ${this.value}, type ${this.type}, label ${this.label}, height ${this.height}`);
+        console.log(`value ${this.value}, type ${this.type}, label ${this.label}, height ${this.height}, placeholder ${this.placeholder}`);
     }
 }
 window.customElements.define('text-input', textInput);
