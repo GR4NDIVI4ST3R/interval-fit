@@ -1,21 +1,35 @@
 //* PRIMARY FUNCTION
 function addTimer() {
-    const nameInput = timerNameInput.value;
-    let name = nameInput;
-    let duration = 60000;
+    //! Have the custom element.value property output the minutes and the seconds already converted to milliseconds
+    if (isNaN( parseFloat(document.getElementById('seconds-input').value) )) {
+        document.getElementById('seconds-input').value = 0;
+    }
+    if (isNaN( parseFloat(document.getElementById('minutes-input').value) )) {
+        document.getElementById('minutes-input').value = 0;
+    }
+    const duration = ( parseFloat(document.getElementById('seconds-input').value) + (document.getElementById('minutes-input').value * 60) ) * 1000; // Convert the inputs to milliseconds
+    const nameInput = timerNameInput.value; // Input value
+    let name = nameInput; // New value
+    // let duration = 60000;
     let type = 'exercise';
     //! let duration = durationInput;
     //! let type = typeInput;
 
     // Failure
     if (hasValidCharacters(nameInput) === false) {
-        showAlert('Please use the following: a-z, A-Z, 0-9, –, /, &, +, #, @, $, ?, or !', 'danger', timerNameInput);
+        showAlert('Please use the following: a-z, A-Z, 0-9, –, /, &, +, #, @, %, $, ?, or !', 'danger', timerNameInput);
         removeAlert(8000);
     }
     else if (nameInput.length >= 20) {
         showAlert('Chosen name must not exceed 20 characters.', 'danger', timerNameInput);
         removeAlert(6000);
     }
+
+    if (duration <= 0) {
+        showAlert('Timer duration must not be less than or equal to zero.', 'danger', timerNameInput);
+        removeAlert(6000);
+    }
+    //! if (durationInput.isEmpty()) show alert to enter a duration
 
     // Success
     else {

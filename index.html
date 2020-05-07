@@ -70,6 +70,15 @@
 
             <div class="container">
                 <input type="text" name="name" id="timer-name-input" placeholder="Timer Name" autocomplete="off" required>
+                <!-- Custom time picker -->
+                    <!--! Combine both inputs into one web component -->
+                    <!--! Give the web component a property for minutes and a property for seconds -->
+                    <!--! .getValue() method returns the total time inputted in milliseconds AND if (one field is empty, but not other) make them equal zero-->
+                    <!--! .isEmpty() method that returns true if both seconds and minutes are empty -->
+                    <!--! .clear() method to empty both minutes and seconds inputs -->
+                    <input type="number" placeholder="minutes" name="" id="minutes-input">
+                    <input type="number" placeholder="seconds" name="" id="seconds-input">
+                <!-- End of custom time picker -->
                 <div class="button" id="submit-timer-btn">Submit</div>
             </div>
         </div>
@@ -90,6 +99,7 @@
 
 </body>
 
+<!--? Switch to a module-style import system using [import __ from ./__] and [export __] -->
 <script src="./lib/general-library.js"></script>
 <script src="./lib/ghetto-bootstrap.js"></script>
 
