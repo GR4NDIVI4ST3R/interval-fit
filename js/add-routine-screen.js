@@ -55,3 +55,5 @@ function addRoutine() {
     }
     console.log(RoutineList);
 }
+
+submitRoutineBtn.addEventListener('click', () => addRoutine());

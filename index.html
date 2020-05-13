@@ -51,11 +51,11 @@
                     <span class="timer-duration-label"></span>
                     <span class="timer-type-label"></span>
 
-                    <a class="delete-timer-btn"></a>
+                    <a class="delete-btn"></a>
                 </div>
                 
-                <a class="button nav-btn" id="add-timer-btn" target="add-timer-screen">Add Timer</a>
-                <div class="button" id="finish-routine-btn">Finish Routine</div>
+                <div class="button nav-btn" id="add-timer-btn" target="add-timer-screen">Add Timer</div>
+                <div class="button nav-btn" id="finish-routine-btn" target="timer-screen">Finish Routine</div>
             </div>
 
         </div>
@@ -78,7 +78,9 @@
                     <!--! .clear() method to empty both minutes and seconds inputs -->
                     <input type="number" placeholder="minutes" name="" id="minutes-input">
                     <input type="number" placeholder="seconds" name="" id="seconds-input">
+                    <!--! input for selecting timer type -->
                 <!-- End of custom time picker -->
+                <div class="button" id="clear-forms-btn">Clear</div>
                 <div class="button" id="submit-timer-btn">Submit</div>
             </div>
         </div>

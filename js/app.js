@@ -3,7 +3,6 @@
 // TODO: When app switches to the timer screen, count 'timeLabel' up from zero and reverse sand animation as if it were filling up
 // TODO: Make a Settings icon that links to ./settings-screen
 // TODO: Sand Animation!
-// TODO: If currentRoutine isn't reset, then allow user to go back to where they left off
 // TODO: Make Montserrat offline by linking it as an included css file
 
 //* GLOBALS
@@ -60,10 +59,6 @@ const App = {
         document.querySelectorAll('.nav-hyperlink').forEach((link)=>{
             link.addEventListener('click', App.nav);
         });
-
-        submitRoutineBtn.addEventListener('click', () => addRoutine());
-        submitTimerBtn.addEventListener('click', () => addTimer());
-        finishRoutineBtn.addEventListener('click', () => finishRoutine());
 
         App.loadScript(document.querySelector('.active').id);
     },
