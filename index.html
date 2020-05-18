@@ -12,10 +12,37 @@
 <body>
     <!-- The following screen structure is based on the Single Page Application tutorial by Steve Griffith: https://youtu.be/wlVmmsMD28w -->
 
-    <div class="screen active" id="home-screen"> <!--! Change ID -->
+    <!-- <div class="screen" id="home-screen">
         <div class="home-screen">
             <h1>INTERVAL FIT</h1>
             <div class="button nav-btn" target="add-routine-screen">Add Routine</div>
+        </div>
+    </div> -->
+
+    <div class="screen active" id="routine-screen"> <!-- This is the home screen for now -->
+        <div class="routine-screen">
+
+            <header>
+                <a href="#" class="nav-btn" target="routine-screen"><img src="./imgs/back-btn-dark.svg" alt="home"></a> <!--! Make me into the Home Button using the app logo -->
+                <div class="screen-label">INTERVAL FIT</div>
+            </header>
+
+            <div class="container" id="routine-container">
+                <h1 id="no-routines-alert">NO ROUTINES!</h1>
+                
+                <div id="routine-cards-container"></div>
+                
+                <div class="routine-card hidden" id="routine-card-template">
+                    <!-- .routine-card is a template that will always remain empty -->
+                    <h4 class="routine-name-label"></h4>
+                    <span class="timer-count-label"></span>
+
+                    <a class="delete-btn"></a>
+                </div>
+                
+                <div class="button nav-btn" id="add-routine-btn" target="add-routine-screen">Add Routine</div>
+            </div>
+
         </div>
     </div>
 
@@ -27,19 +54,19 @@
                 <div class="screen-label">ADD ROUTINE</div>
             </header>
 
-            <div class="container" id="add-routine-container">
+            <div class="container" id="name-routine-form">
                 <h1>NAME YOUR ROUTINE</h1>
 
                 <input type="text" id="routine-name-input" placeholder="Routine Name" autocomplete="off">
 
-                <div class="button" id="submit-routine-btn">Submit</div>
+                <div class="button" id="name-routine-btn">Submit</div>
             </div>
             
-            <div class="container hidden" id="timer-display-container">
-                <div id="timer-display-header">
-                    <p class="name-label">Name</p>
+            <div class="container hidden" id="timer-list">
+                <div id="timer-list-header">
+                    <p class="form-label">Name</p>
                     <div id="routine-label"></div>
-                    <p class="timers-label">Timers</p>
+                    <p class="form-label">Timers</p>
                 </div>
                 <div id="no-timers-alert">NONE</div>
                 
@@ -55,7 +82,7 @@
                 </div>
                 
                 <div class="button nav-btn" id="add-timer-btn" target="add-timer-screen">Add Timer</div>
-                <div class="button nav-btn" id="finish-routine-btn" target="timer-screen">Finish Routine</div>
+                <div class="button" id="submit-routine-btn">Submit Routine</div>
             </div>
 
         </div>
@@ -80,7 +107,7 @@
                     <input type="number" placeholder="seconds" name="" id="seconds-input">
                     <!--! input for selecting timer type -->
                 <!-- End of custom time picker -->
-                <div class="button" id="clear-forms-btn">Clear</div>
+                <a class="delete-btn" id="reset-form-btn">Clear</a>
                 <div class="button" id="submit-timer-btn">Submit</div>
             </div>
         </div>
@@ -105,9 +132,10 @@
 <script src="./lib/general-library.js"></script>
 <script src="./lib/ghetto-bootstrap.js"></script>
 
+<script src="./js/globals.js"></script>
 <script src="./js/app.js"></script>
-<script src="./js/add-routine-screen.js"></script>
-<script src="./js/add-timer-screen.js"></script>
-<script src="./js/timer-screen.js"></script>
+<script src="./js/routine-screen.js"></script>
+<script src="./js/add-routine.js"></script>
+<script src="./js/timer.js"></script>
 
 </html>

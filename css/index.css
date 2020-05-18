@@ -29,7 +29,7 @@ canvas {
     grid-area: center;
 }
 
-/** Headers*/
+/** Headers */
 h4 {
     margin: 0;
 }
@@ -53,13 +53,11 @@ header .nav-btn img {
     font-weight: 800; /*Extra-Bold*/
     font-size: 1.1em;
 }
-.name-label {
+
+/** Labels */
+.form-label {
     margin: 0 0 2px;
     color: var(--blue);
-    font-weight: medium;
+    font-weight: 400;
     font-size: 1.1em;
-}
-
-.nav-hyperlink {
-    margin-bottom: 2em;
 }

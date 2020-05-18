@@ -1,4 +1,70 @@
-//* PRIMARY FUNCTION
+//* GENERAL FUNCTIONS / LOW-LEVEL ABSTRACTIONS
+function hasValidCharacters(_input) {
+    // Regex.label = /[a-z A-Z 0-9 ? ! @ # / \$ \& \+ \-]/g;
+    if ( isEmpty(_input.replace(Regex.label, "")) ) { // "replace()" does not change the string it is called on. It returns a new string.
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function nameUsed(_array, _name) {
+    let result;
+    _array.forEach( element => {if (element.name == _name) result = true} );
+    return result;
+}
+function resetInputs() {
+    // Empty the new-timer-form
+    timerNameInput.value = '';
+    document.getElementById('seconds-input').value = ''; //! Change to durationInput
+    document.getElementById('minutes-input').value = ''; //! Change to durationInput
+    //! typeInput.value = 'SELECT TYPE';
+}
+function clearTimerCards() {
+    // Remove the timer card elements created from the last routine
+    document.querySelectorAll('#timer-cards-container > :not(#timer-card-template)').forEach( (element) => element.remove());
+}
+
+//* MID-TIER ABSTRACTIONS
+function nameRoutine() {
+    const input = routineNameInput.value;
+    let name = input.toUpperCase();;
+
+    // Failure
+    if (hasValidCharacters(input) === false) {
+        showAlert('Please use the following: a-z, A-Z, 0-9, –, /, &, +, #, @, $, ?, or !', 'danger', routineNameInput);
+        removeAlert(8000);
+    }
+    else if (input.length >= 20 ) {
+        showAlert('Chosen name should not exceed 20 characters.', 'danger', routineNameInput);
+        removeAlert(6000);
+    }
+    else if ( nameUsed(RoutineList, name) ) {
+        // If the new routine's name matches the name of another routine, throw error message
+        showAlert('Chosen name matches that of another routine. Please choose another name.', 'danger', routineNameInput);
+        removeAlert(6000);
+    }
+
+    // Success
+    else {
+        // Assign a default name if necessary
+        if (isEmpty(input)) {
+            name = `ROUTINE ${RoutineList.length + 1}`;
+        }
+        // Create a temporary Routine that isn't pushed to the list until the user presses submit
+        currentRoutine = new Routine(name);
+        
+        // Show the list of timers belonging to the newly created routine
+        document.getElementById('name-routine-form').classList.add('hidden');
+        document.getElementById('timer-list').classList.remove('hidden');
+        document.querySelector('#routine-label').innerHTML = name;
+        
+        // Make the input box empty
+        routineNameInput.value = '';
+    }
+    console.log(RoutineList);
+}
+
 function addTimer() {
     //! Have the custom element.value property output the minutes and the seconds already converted to milliseconds
     if (isNaN( parseFloat(document.getElementById('seconds-input').value) )) {
@@ -10,22 +76,23 @@ function addTimer() {
     //! let duration = durationInput;
     //! Change duration to match custom element
     const duration = ( parseFloat(document.getElementById('seconds-input').value) + (document.getElementById('minutes-input').value * 60) ) * 1000; // Convert the inputs to milliseconds
-    const nameInput = timerNameInput.value; // Input value
-    let name = nameInput; // New value
+    let name = timerNameInput.value; // New value
     let type = 'exercise';
     //! let type = typeInput;
 
     // Failure
-    if (hasValidCharacters(nameInput) === false) {
+    if (duration <= 0) {
+        showAlert('Timer duration must not be less than or equal to zero.', 'danger', timerNameInput);
+        removeAlert(8000);
+        document.getElementById('seconds-input').value = '';
+        document.getElementById('minutes-input').value = '';
+    }
+    else if (hasValidCharacters(timerNameInput.value) === false) {
         showAlert('Please use the following: a-z, A-Z, 0-9, –, /, &, +, #, @, %, $, ?, or !', 'danger', timerNameInput);
         removeAlert(10000);
     }
-    else if (nameInput.length > 50) { //! BUG: If name is one really long word, it spills out of the box
+    else if (timerNameInput.value.length > 50) { //! BUG: If name is one really long word, it spills out of the box
         showAlert('Chosen name must not exceed 50 characters.', 'danger', timerNameInput);
-        removeAlert(8000);
-    }
-    else if (duration <= 0) {
-        showAlert('Timer duration must not be less than or equal to zero.', 'danger', timerNameInput);
         removeAlert(8000);
     }
     //! else if (durationInput.isEmpty()) {
@@ -35,7 +102,7 @@ function addTimer() {
     // Success
     else {
         // Assign a default name if necessary
-        if (isEmpty(nameInput)) {
+        if (isEmpty(timerNameInput.value)) {
             name = `Exercise ${currentRoutine.timers.length + 1}`;
         }
         // Add Timer
@@ -46,7 +113,7 @@ function addTimer() {
         showAlert(`Success! ${name} created!`, 'success', timerNameInput);
         removeAlert(3000);
 
-        emptyInputs();
+        resetInputs();
 
         console.log('Timers: %o', currentRoutine.timers);
     }
@@ -87,21 +154,11 @@ function createTimerCard (_name, _duration, _type) {
         App.changeScreen('add-routine-screen');
     });
 }
-function clearTimerCards() {
-    // Remove the timer card elements created from the last routine
-    document.querySelectorAll('#timer-cards-container > :not(#timer-card-template)').forEach( (element) => element.remove());
-}
-function emptyInputs() {
-    // Empty the new-timer-form
-    timerNameInput.value = '';
-    document.getElementById('seconds-input').value = ''; //! Change to durationInput
-    document.getElementById('minutes-input').value = ''; //! Change to durationInput
-    //! typeInput.value = 'SELECT TYPE';
-}
 
-function finishRoutine() {
+function submitRoutine() {
     //! switch screens
     //! If currentRoutine isn't reset, then allow user to go back to where they left off
+    // Failure
     if (currentRoutine.timers.length < 1) {
         showAlert('Please add a timer.', 'danger', addTimerBtn);
         removeAlert(1500);
@@ -112,24 +169,26 @@ function finishRoutine() {
 
         // Move to bottom of screen so user can see the submit-routine-btn, as well as, the alert
         document.location.hash = '';
-        document.location.hash ='finish-routine-btn';
+        document.location.hash ='submit-routine-btn';
     }
+
+    // Success
     else {
-        // Finish the process by submitting the routine to the RoutineList
+        // Submit the routine to the RoutineList
         RoutineList.push(currentRoutine);
         
         // Reset current routine now that it has been saved
         currentRoutine = new Routine('__EMPTY__');
 
-        emptyInputs();
-
         // Clear the timer-cards off of the screen
         clearTimerCards();
         document.getElementById('no-timers-alert').classList.remove('hidden');
-
+        
+        resetInputs();
+        
         // Show the form for adding routines, and hide the list of timers
-        document.getElementById('add-routine-container').classList.remove('hidden');
-        document.getElementById('timer-display-container').classList.add('hidden');
+        document.getElementById('name-routine-form').classList.remove('hidden');
+        document.getElementById('timer-list').classList.add('hidden');
 
         console.log('CurrentRoutine: %o', currentRoutine);
         console.log('RoutineList: %o', RoutineList);
@@ -137,5 +196,6 @@ function finishRoutine() {
     }
 }
 
+nameRoutineBtn.addEventListener('click', () => nameRoutine());
 submitTimerBtn.addEventListener('click', () => addTimer());
-finishRoutineBtn.addEventListener('click', () => finishRoutine());
+submitRoutineBtn.addEventListener('click', () => submitRoutine());

@@ -109,7 +109,7 @@ h6 {
     background: none;
 }
 
-.nav-hyperlink {
+.nav-anchor {
     color: var(--blue);
     text-decoration: none;
 }
