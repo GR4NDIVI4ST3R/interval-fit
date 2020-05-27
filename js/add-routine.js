@@ -62,7 +62,6 @@ function nameRoutine() {
         // Make the input box empty
         routineNameInput.value = '';
     }
-    console.log(RoutineList);
 }
 
 function addTimer() {
@@ -189,6 +188,8 @@ function submitRoutine() {
         // Show the form for adding routines, and hide the list of timers
         document.getElementById('name-routine-form').classList.remove('hidden');
         document.getElementById('timer-list').classList.add('hidden');
+
+        App.changeScreen('routine-screen');
 
         console.log('CurrentRoutine: %o', currentRoutine);
         console.log('RoutineList: %o', RoutineList);

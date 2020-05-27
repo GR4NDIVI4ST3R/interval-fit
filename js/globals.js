@@ -8,6 +8,7 @@ const addTimerBtn = document.getElementById('add-timer-btn');
 const submitTimerBtn = document.getElementById('submit-timer-btn');
 
 const timerCardsContainer = document.getElementById('timer-cards-container');
+const routineCardsContainer = document.getElementById('routine-cards-container');
 
 //* VARIABLES
 var lastScreen = 'home-screen';

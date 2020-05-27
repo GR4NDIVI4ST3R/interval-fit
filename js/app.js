@@ -43,7 +43,13 @@ const App = {
     
     loadScript: function (_screen) {
         switch (_screen) {
-            case 'home-screen':
+            case 'routine-screen':
+                if (RoutineList.length < 1) {
+                    document.getElementById('no-routines-alert').classList.remove('hidden');
+                } else {
+                    RoutineList.forEach( routine => createRoutineCard(routine.name, routine.timers.length) );
+                    document.getElementById('no-routines-alert').classList.add('hidden');
+                }
                 break;
 
             case 'add-routine-screen':
