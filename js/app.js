@@ -1,5 +1,5 @@
 //* APP CONTROL OBJECT
-// Based on the Single Page Application tutorial by Steve Griffith: https://youtu.be/wlVmmsMD28w
+// [const App] is Based on the Single Page Application tutorial by Steve Griffith: https://youtu.be/wlVmmsMD28w
 const App = {
     screens: [],
     init: function () {
@@ -29,7 +29,7 @@ const App = {
 
     //* Navigate to a different screen
     changeScreen: function (targetScreen) {        
-        //! Clear event listeners, call functions that stop screen functionality, reset variables, etc.
+        // Clear event listeners, call functions that stop screen functionality, reset variables, etc.
         clearTimerCards();
         clearRoutineCards();
         endTimer();
@@ -74,7 +74,6 @@ const App = {
                 App.loadCanvas();
                 loadTimerScreen();
                 break;
-                //! Update to include other screens
         }
     },
     

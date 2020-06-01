@@ -1,6 +1,3 @@
-// Add event listener for all routine tiles that detects if they are clicked
-// if (clickIntent is to edit the routine) then...
-// else beginRoutine()
 function createRoutineCard (_name, _timerCount) {
     const template = document.getElementById('routine-card-template');
     const newCard = template.cloneNode(true);
@@ -17,32 +14,42 @@ function createRoutineCard (_name, _timerCount) {
     routineCardsContainer.appendChild(newCard);
     
     deleteBtn.addEventListener('click', (event) => {
-        // Select the targeted timer-card element
+        // Prevent the click event from bubbling to the parent element
         event.stopPropagation();
+
+        // Select the targeted card element
         let element = event.currentTarget.parentNode;
         
-        // Find the index of the timer card and remove it from the currentRoutine.timers list
+        // Find the index of the card and remove it from the RoutineList array
         let index = Array.from(routineCardsContainer.children).indexOf(element);
         RoutineList.splice(index, 1);
         
-        // Remove the timer-card element associated with this timer
+        // Remove the routine-card element associated with this card
         element.remove();
 
-        // Refresh the screen to show the no-timers-alert in case the user deletes the last timer
+        // Refresh the screen to show the no-routines-alert in case the user deletes the all of their routines
         App.changeScreen('routine-screen');
 
         console.log('RoutineList: %o', RoutineList);
     });
 
-    newCard.addEventListener('click', beginRoutine);
+    newCard.addEventListener('click', (e) => {
+        // Select the targeted card element
+        let element = event.currentTarget;
+        
+        // Find the index of the routine card
+        let index = Array.from(routineCardsContainer.children).indexOf(element);
+        
+        currentRoutine = RoutineList[index];
+        currentTimer = currentRoutine.timers[0];
+        beginRoutine();
+    });
 }
 function clearRoutineCards() {
     // To refresh the page, remove all routine card elements before re-pasting them
     document.querySelectorAll('#routine-cards-container > *').forEach( (element) => element.remove());
 }
+
 function beginRoutine() {
-    console.log('\n', currentRoutine)
+    App.changeScreen('timer-screen');
 }
-// document.querySelectorAll('.routine-card').forEach( (card) => {
-//     card.addEventListener('click', beginRoutine);
-// });

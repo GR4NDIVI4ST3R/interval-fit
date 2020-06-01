@@ -3,13 +3,14 @@ var endTimer = function () {};
 
 function loadTimerScreen() {
     //* GLOBALS
-    let time = ( 5 * 1000 ); //! Change to: let time = currentTimer.duration;
+    let time = currentTimer.duration;
     let isCountingDown = false;
     // let hasEnded = false;
     let secInterval;
     const timeLabel = document.getElementById('timeLabel');
     timeLabel.innerHTML = formatMilliseconds(time);
-    
+    //TODO: Create and update the name of the timer when the timer is loaded using a span at the top of the screen
+
     //* ANIMATION OBJECTS
     class SecondsAnimation {
         constructor () {
@@ -48,10 +49,7 @@ function loadTimerScreen() {
         secInterval = setInterval(function () {
             // Prevent the timer from counting below zero seconds
             if (time <= 0) {
-                endTimer();
-                //!nextTimer();
-                //! App.changeScreen(currentTimer);
-                App.changeScreen('add-routine-screen');
+                nextTimer();
             }
             else {
                 time -= 10; // In milliseconds
@@ -76,14 +74,18 @@ function loadTimerScreen() {
         }
     }
 
-    //! function nextTimer() {
-    //     let index = currentRoutine.timers[indexof(currentTimer)];
-    //     if (index !== currentRoutine.timers.length - 1) {
-    //         currentTimer = currentRoutine.timers[index + 1];
-    //     } else {
-    //         //! Routine has ended, what now?
-    //     }
-    // }
+    function nextTimer() {
+        let index = Array.from(currentRoutine.timers).indexOf(currentTimer);
+        if (index !== currentRoutine.timers.length - 1) {
+            currentTimer = currentRoutine.timers[index + 1];
+            App.changeScreen('timer-screen');
+            canvas.click();
+        } else {
+            endTimer();
+            App.changeScreen('routine-screen');
+        }
+    }
+
     endTimer = function () {
         pauseTimer();
         context.clearRect(0, 0, canvas.width, canvas.height);

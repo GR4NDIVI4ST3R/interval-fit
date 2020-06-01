@@ -22,13 +22,13 @@ function resetInputs() {
 }
 function clearTimerCards() {
     // Remove the timer card elements created from the last routine
-    document.querySelectorAll('#timer-cards-container > :not(#timer-card-template)').forEach( (element) => element.remove());
+    document.querySelectorAll('#timer-cards-container > *').forEach( (element) => element.remove());
 }
 
 //* MID-TIER ABSTRACTIONS
 function nameRoutine() {
     const input = routineNameInput.value;
-    let name = input.toUpperCase();;
+    let name = input.toUpperCase();
 
     // Failure
     if (hasValidCharacters(input) === false) {
@@ -155,8 +155,6 @@ function createTimerCard (_name, _duration, _type) {
 }
 
 function submitRoutine() {
-    //! switch screens
-    //! If currentRoutine isn't reset, then allow user to go back to where they left off
     // Failure
     if (currentRoutine.timers.length < 1) {
         showAlert('Please add a timer.', 'danger', addTimerBtn);

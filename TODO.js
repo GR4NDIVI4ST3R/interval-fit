@@ -6,12 +6,8 @@
 // TODO: Cache Montserrat offline as an included css file
 
 //* APP PLAN!!!
-/*
-Routine creation:
-    Add workout timers and rest timers
-    
-*/
 //TODO: Input Clear Button on add-timer-screen
+//TODO: if (clickIntent is to edit the routine) then... else beginRoutine()
 //TODO: Add back button ability on android
     // history.pushState({}, targetScreen, `#${targetScreen}`);
     // document.getElementById(targetScreen).dispatchEvent(app.show);
