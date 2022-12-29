@@ -3,4 +3,4 @@
 
 Just download all of the files, keeping them in their respective folders, and open the index.html file w/ Chrome.
 
---Property of Xavior Pautin
+**Notice: This project has been dropped. The app is functional, but additional features and bug fixes will not be worked on.**
